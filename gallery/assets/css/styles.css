@@ -2,8 +2,6 @@
   --gallery-gap: 20px;
   --page-padding: 32px;
   --sidebar-width: 190px;
-  --flex-column-width: 250px;
-  /* --flex-column-width: calc((100vw - 2 * var(--page-padding) - 4 * var(--gallery-gap) - var(--sidebar-width) - var(--scrollbar-width)) / 5); */
   --scrollbar-width: 10px;
   --header-height: 60px;
   --text-shadow: var(--second) 0 0 1px, var(--second) 0 0 1px, var(--second) 0 0 1px, var(--second) 0 0 1px, var(--second) 0 0 1px, var(--second) 0 0 1px;
@@ -344,15 +342,6 @@ header p {
   display: block;
 }
 
-.flex-column {
-  display: flex;
-  flex-direction: column;
-  gap: var(--gallery-gap);
-  flex-wrap: nowrap;
-  min-width: 250px;
-  width: var(--flex-column-width);
-}
-
 .overlay {
   position: fixed;
   top: 0;
@@ -589,11 +578,6 @@ footer a:hover {
 
   header {
     display: flex !important;
-  }
-
-  .flex-column {
-    min-width: 0 !important;
-    width: 325px !important;
   }
 
   .overlay-content {

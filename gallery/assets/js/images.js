@@ -19,11 +19,6 @@ function openGallery(galleryId) {
 var htmlFilePath = "";
 let [imagePath, originalImagePath] = ["assets/img/" + htmlFilePath + "/min", "assets/img/" + htmlFilePath + "/original"];
 const imageReductionFactor = 3.03;
-const sidebarWidth = parseInt($(":root").css("--sidebar-width"), 10);
-const galleryGap = parseInt($(":root").css("--gallery-gap"), 10);
-const galleryImageSize = parseInt($(":root").css("--flex-column-width"), 10);
-const galleryPadding = 2 * parseInt($(":root").css("--page-padding"), 10);
-let totalColumnsPossible;
 
 const imageDictionary = JSON.parse(localStorage.getItem("imageDictionary")) || {};
 
@@ -43,12 +38,6 @@ const nextButton = $("<ion-icon>").attr("id", "next-button").attr("name", "chevr
 
 let currentImageIndex = 0;
 let windowWidth = $(window).width();
-
-// Fonction pour calculer les colonnes
-function calculateColumns() {
-    const galleryRoom = $(window).width() - sidebarWidth - galleryPadding - (Math.max(2, Math.floor(($(window).width() - sidebarWidth - galleryPadding) / galleryImageSize)) - 1) * galleryGap;
-    totalColumnsPossible = Math.max(2, Math.floor(galleryRoom / galleryImageSize));
-}
 
 // Fonction pour traiter une image
 function processImage(imageLink) {
@@ -118,8 +107,6 @@ function randomizeAndPlaceImages() {
                 const previousImageDictionary = JSON.parse(localStorage.getItem("imageDictionary")) || {};
 
                 imageLinks.sort(() => 0.5 - Math.random());
-
-                calculateColumns();
 
                 const totalImages = imageLinks.length;
 
@@ -300,14 +287,3 @@ $("#viewButton").on("click", function () {
 
     localStorage.setItem("imageDictionary", JSON.stringify(imageDictionary));
 });
-
-// $(window).on("resize", function () {
-//   const newWindowWidth = $(window).width();
-//   if (Math.abs(newWindowWidth - windowWidth) > 10) {
-//     clearTimeout(resizeTimer);
-//     resizeTimer = setTimeout(function () {
-//       windowWidth = newWindowWidth;
-//       randomizeAndPlaceImages();
-//     }, 500);
-//   }
-// });
