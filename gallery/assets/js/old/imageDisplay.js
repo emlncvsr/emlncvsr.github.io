@@ -34,13 +34,13 @@ function showImage(index) {
     downloadButton.attr("href", originalImagePath + fileName + ".jpg");
     widthElement.text(
       "Width: " +
-        Math.round(this.naturalWidth * imageReductionFactor) +
-        " pixels"
+      Math.round(this.naturalWidth * imageReductionFactor) +
+      " pixels"
     );
     heightElement.text(
       "Height: " +
-        Math.round(this.naturalHeight * imageReductionFactor) +
-        " pixels"
+      Math.round(this.naturalHeight * imageReductionFactor) +
+      " pixels"
     );
   };
 
@@ -78,8 +78,8 @@ function searchBarImages() {
       .addClass("searchbarItemWidth")
       .text(
         "Width: " +
-          Math.round(this.naturalWidth * imageReductionFactor) +
-          " pixels"
+        Math.round(this.naturalWidth * imageReductionFactor) +
+        " pixels"
       )
       .appendTo(imageNameInfo);
 
@@ -87,8 +87,8 @@ function searchBarImages() {
       .addClass("searchbarItemHeight")
       .text(
         "Height: " +
-          Math.round(this.naturalHeight * imageReductionFactor) +
-          " pixels"
+        Math.round(this.naturalHeight * imageReductionFactor) +
+        " pixels"
       )
       .appendTo(imageNameInfo);
 

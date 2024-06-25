@@ -134,3 +134,10 @@ ion-icon,
   color: var(--second);
   background: var(--transparent-background);
 }
+
+@media screen and (max-width:1080px){
+  #main-button{
+    bottom: 16.5vh !important;
+    display: none;
+  }
+}

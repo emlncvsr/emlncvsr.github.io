@@ -7,9 +7,9 @@
   --scrollbar-width: 10px;
   --header-height: 60px;
   --text-shadow: var(--second) 0 0 1px, var(--second) 0 0 1px, var(--second) 0 0 1px, var(--second) 0 0 1px, var(--second) 0 0 1px, var(--second) 0 0 1px;
-  --link-cursor: url(../../assets/cursors/Link.cur), pointer;
-  --default-cursor: url(../../assets/cursors/Normal.cur), default;
-  --text-cursor: url(../../assets/cursors/Text.cur), text;
+  --link-cursor: url(/assets/cursors/Link.cur), pointer;
+  --default-cursor: url(/assets/cursors/Normal.cur), default;
+  --text-cursor: url(/assets/cursors/Text.cur), text;
   --font-family: caption, "VSCO Gothic", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   --font-family-ja: "MS Mincho", "YU Mincho";
 }
@@ -123,6 +123,42 @@ button:hover {
   aspect-ratio: 1;
 }
 
+#selector {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--transparent-main);
+  z-index: 3;
+  gap: 20px;
+  flex-direction: column;
+}
+
+#selector p {
+  font-size: 17px;
+}
+
+#gallery-list {
+  display: flex;
+  gap: 10px;
+}
+
+.gallery-item {
+  border: 1px solid var(--third);
+  width: 20vw;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  cursor: var(--link-cursor);
+  background: var(--main);
+}
+
+.gallery-item:hover {
+  background: var(--third);
+}
+
 #sidebar {
   background: var(--transparent-main);
   height: 100vh;
@@ -155,6 +191,7 @@ button:hover {
 
 #sidebar section:nth-child(1) * {
   color: var(--second);
+  width: fit-content;
 }
 
 #sidebar section:nth-child(1) {
@@ -194,6 +231,7 @@ ion-icon[name="pause-outline"] {
   cursor: var(--link-cursor);
   user-select: none;
 }
+
 .sidebar-item * {
   cursor: var(--link-cursor);
 }
@@ -268,6 +306,7 @@ button,
 header p {
   font-size: 1rem;
   font-weight: 500;
+  text-overflow: nowrap;
 }
 
 #about {
@@ -480,15 +519,6 @@ footer a:hover {
   transition: 0.3s;
 }
 
-#secret {
-  position: fixed;
-  top: 15px;
-  right: 15px;
-  z-index: 3;
-  padding: 15px;
-  background: var(--transparent-main);
-}
-
 .image-title,
 #name,
 .searchbarItemName {
@@ -524,34 +554,19 @@ footer a:hover {
   color: var(--second);
 }
 
-#secret-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: var(--transparent-main);
-  z-index: 3;
+#masonry {
   display: flex;
+  width: 100%;
+  flex-wrap: wrap;
   justify-content: center;
-  align-items: center;
-  opacity: 0;
-  z-index: -1;
 }
 
-#secretInput {
-  background: transparent;
-  color: var(--second);
-  border: none;
-  font-size: 30px;
-  max-width: 80vw;
-}
-
-.secret-gallery .searchbarItemWidth,
-.secret-gallery .searchbarItemHeight,
-.secret-gallery .image-width,
-.secret-gallery .image-height {
-  display: none !important;
+.masonry-item {
+  margin: 10px;
+  background: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
 }
 
 @media screen and (min-width: 1200px) {
@@ -641,11 +656,6 @@ footer a:hover {
     display: none !important;
   }
 
-  #secret {
-    top: unset !important;
-    bottom: 15px !important;
-  }
-
   #profile-picture {
     width: 150px !important;
   }
@@ -653,10 +663,6 @@ footer a:hover {
   footer section {
     flex-direction: column !important;
     gap: 8px;
-  }
-
-  #secretInput {
-    font-size: 20px !important;
   }
 
   #footer-content {

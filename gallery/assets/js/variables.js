@@ -9,7 +9,6 @@ $(document).ready(function () {
   $("#cookieSettings").text("Cookie Settings");
   $("#imageNotification").html('<h1 id="notificationText">New Post!</h1><p id="notificationDescription">A new image has been published.</p><button id="viewButton">Dismiss</button>');
   $(".context-menu").html('<a href="#page">Haut de Page</a><a href="#gallery">Gallerie</a><p data-url="/">Accueil</p>');
-  $("#secret-overlay").html('<div id="secret-overlay-content"><input type="text" id="secretInput" placeholder="Text..." /></div>');
   // $("#preloader").html('<p class="preloader-waiting">ロード..</p><div class="preload-count-container"><p class="number colored-text"></p><span class="colored-text">%</span></div>');
   $("#following").click(function () {
     if ($(this).text() === "following") {

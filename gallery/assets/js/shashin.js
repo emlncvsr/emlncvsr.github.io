@@ -1,4 +1,5 @@
 document.title = "Gallery | 写真";
+htmlFilePath = "shashin"
 
 $(document).ready(function () {
   $("#name").text("写真");

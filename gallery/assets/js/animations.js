@@ -23,7 +23,6 @@ $(document).ready(function () {
 });
 
 var clickCounter = 0;
-var secretPathcode = "";
 
 $(".sidebar-item:eq(2)").on("click", function () {
   clickCounter++;

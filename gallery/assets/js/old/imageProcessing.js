@@ -1,5 +1,5 @@
-let htmlFilePath = new URL(window.location.href).pathname.split("/").slice(0, -1).join("/") + "/";
-let [imagePath, originalImagePath] = [htmlFilePath + "assets/img/min/", htmlFilePath + "assets/img/original/"];
+var htmlFilePath = "";
+let [imagePath, originalImagePath] = ["assets/img/" + htmlFilePath + "/min/", "assets/img/" + htmlFilePath + "/original/"];
 const imageReductionFactor = 3.03;
 const sidebarWidth = parseInt($(":root").css("--sidebar-width"), 10);
 const galleryGap = parseInt($(":root").css("--gallery-gap"), 10);

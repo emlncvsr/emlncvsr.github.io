@@ -54,20 +54,23 @@ $("#randomizeButton").on("click", function () {
 });
 
 // Appeler la fonction randomizeAndPlaceImages lors du chargement de la page
-randomizeAndPlaceImages();
+$("#shashin").on("click", function () {
+  $('<script src="assets/js/' + this.id + '.js"></script>').prependTo('head');
+  randomizeAndPlaceImages();
+});
 
 let windowWidth = $(window).width();
 
-$(window).on("resize", function () {
-  const newWindowWidth = $(window).width();
-  if (Math.abs(newWindowWidth - windowWidth) > 10) {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(function () {
-      windowWidth = newWindowWidth;
-      randomizeAndPlaceImages();
-    }, 500);
-  }
-});
+// $(window).on("resize", function () {
+//   const newWindowWidth = $(window).width();
+//   if (Math.abs(newWindowWidth - windowWidth) > 10) {
+//     clearTimeout(resizeTimer);
+//     resizeTimer = setTimeout(function () {
+//       windowWidth = newWindowWidth;
+//       randomizeAndPlaceImages();
+//     }, 500);
+//   }
+// });
 
 // Gérer le clic sur le bouton de vue
 $("#viewButton").on("click", function () {

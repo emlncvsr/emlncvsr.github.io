@@ -17,10 +17,19 @@ window.transitionToPage = function (href) {
   }
 };
 
+function storeGalleryIdAndNavigate(url, galleryId) {
+  localStorage.setItem('galleryId', galleryId);
+  transitionToPage(url);
+}
+
 $("[data-url]").click(function (e) {
-  // if (!$(e.target).is("ion-icon[name='copy-outline']")) {
-  transitionToPage(this.getAttribute("data-url"));
-  // }
+  const url = this.getAttribute("data-url");
+  const galleryId = this.getAttribute("gallery-id");
+  if (galleryId) {
+    storeGalleryIdAndNavigate(url, galleryId);
+  } else {
+    transitionToPage(url);
+  }
 });
 
 // if ("serviceWorker" in navigator) {
