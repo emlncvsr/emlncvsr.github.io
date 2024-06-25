@@ -129,46 +129,34 @@ function randomizeAndPlaceImages() {
 
                 localStorage.setItem("imageDictionary", JSON.stringify(imageDictionary));
 
-                const imagesPerColumn = Math.ceil(totalImages / totalColumnsPossible);
-                const totalColumns = Math.ceil(totalImages / imagesPerColumn);
                 gallery.empty();
 
-                let loadedImages = 0;
+                for (let j = 0; j < totalImages; j++) {
+                    let fileName = decodeURIComponent($(imageLinks[j]).attr("href")).replace(imagePath + "/", "");
+                    fileName = fileName.startsWith('/gallery/') ? fileName.replace('/gallery/', '') : fileName;
 
-                for (let i = 0; i < totalColumns; i++) {
-                    const flexColumn = $("<div>").addClass("flex-column");
+                    const imageElement = $("<img>").attr({
+                        src: imagePath + "/" + fileName.replace("//", "/"),
+                        class: "item",
+                        draggable: "false",
+                        id: fileName.replace(".webp", ""),
+                        alt: fileName.replace(".webp", ""),
+                        "data-index": j,
+                        rel: "preload",
+                        fetchpriority: "high",
+                        // loading: "lazy",
+                    });
 
-                    for (let j = i * imagesPerColumn; j < (i + 1) * imagesPerColumn && j < totalImages; j++) {
-                        let fileName = decodeURIComponent($(imageLinks[j]).attr("href")).replace(imagePath + "/", "");
-                        fileName = fileName.startsWith('/gallery/') ? fileName.replace('/gallery/', '') : fileName;
-
-                        const imageElement = $("<img>").attr({
-                            src: imagePath + "/" + fileName.replace("//", "/"),
-                            class: "item",
-                            draggable: "false",
-                            id: fileName.replace(".webp", ""),
-                            alt: fileName.replace(".webp", ""),
-                            "data-index": j,
-                            rel: "preload",
-                            fetchpriority: "high",
-                            // loading: "lazy",
+                    (function (currentImage) {
+                        currentImage.on("load", function () {
+                            $(this).show();
+                            if (j === totalImages - 1) {
+                                searchBarImages();
+                            }
                         });
+                    })(imageElement);
 
-                        (function (currentImage) {
-                            currentImage.on("load", function () {
-                                loadedImages++;
-
-                                if (loadedImages === totalImages) {
-                                    $(this).show();
-                                    $("#profile-picture").css("background", `url(${gallery[0].lastElementChild.lastElementChild.src})`);
-                                    searchBarImages();
-                                }
-                            });
-                        })(imageElement);
-
-                        flexColumn.append(imageElement);
-                    }
-                    gallery.append(flexColumn);
+                    gallery.append(imageElement);
                 }
             },
             error: function (jqXHR, textStatus, errorThrown) {

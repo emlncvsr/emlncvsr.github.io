@@ -1,5 +1,5 @@
 :root {
-  --gallery-gap: 32px;
+  --gallery-gap: 20px;
   --page-padding: 32px;
   --sidebar-width: 190px;
   --flex-column-width: 250px;
@@ -328,7 +328,7 @@ header p {
   display: flex;
   flex-wrap: wrap;
   gap: var(--gallery-gap);
-  justify-content: center;
+  /* justify-content: center; */
   margin-top: 50px;
   margin-bottom: 50px;
   padding-top: 20px;
@@ -338,6 +338,12 @@ header p {
   cursor: var(--link-cursor);
 }
 
+.item {
+  max-width: 100%;
+  height: 300px;
+  display: block;
+}
+
 .flex-column {
   display: flex;
   flex-direction: column;
@@ -345,12 +351,6 @@ header p {
   flex-wrap: nowrap;
   min-width: 250px;
   width: var(--flex-column-width);
-}
-
-.item {
-  max-width: 100%;
-  height: fit-content;
-  display: block;
 }
 
 .overlay {
@@ -552,21 +552,6 @@ footer a:hover {
 
 #imageNotification p {
   color: var(--second);
-}
-
-#masonry {
-  display: flex;
-  width: 100%;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.masonry-item {
-  margin: 10px;
-  background: #fff;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 4px;
-  overflow: hidden;
 }
 
 @media screen and (min-width: 1200px) {
