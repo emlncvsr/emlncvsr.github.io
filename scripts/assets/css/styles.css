@@ -1,0 +1,81 @@
+::selection {
+  background: rgb(76, 76, 76);
+}
+
+body {
+  background-color: #1e1e1e;
+  color: #e8e8e8;
+  margin: 0;
+  padding: 20px;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  width: 800px;
+}
+
+h1 {
+  text-align: center;
+  color: #e8e8e8;
+  user-select: none;
+  font-size: 25px;
+  margin-top: 5vh;
+  padding-bottom: 10px;
+}
+
+.file-item {
+  border: 1px solid #3c3c3c;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 4px;
+  background-color: #252526;
+}
+
+.file-header {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding-left: 2px;
+  user-select: none;
+  gap: 5px;
+}
+
+.toggle-icon {
+  margin-right: 10px;
+  width: 8px;
+  height: 8px;
+  border-left: 2px solid #569cd6;
+  border-bottom: 2px solid #569cd6;
+  transform: rotate(-135deg);
+  transition: transform 0.2s;
+  transform-origin: center;
+}
+
+.file-item.active .toggle-icon {
+  transform: rotate(-45deg) translate(2px, -2px);
+}
+
+.file-content {
+  display: none;
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #1e1e1e;
+  border-radius: 4px;
+  overflow-x: auto;
+  user-select: text;
+  cursor: text;
+}
+
+.file-content * {
+  font-family: Consolas;
+}
+
+.file-item.active .file-content {
+  display: block;
+}
+
+pre {
+  margin: 0;
+  white-space: pre-wrap;
+}

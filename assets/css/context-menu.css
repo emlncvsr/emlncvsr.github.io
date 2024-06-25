@@ -1,0 +1,36 @@
+@media screen and (max-width: 1080px) {
+  .context-menu {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+  }
+}
+
+.context-menu {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: var(--transparent-main);
+  margin: 0;
+  opacity: 0;
+  border: 1px solid var(--third);
+  border-radius: 3px;
+  transition: 0.25s ease-in-out;
+  z-index: 1000;
+  display: none;
+  flex-direction: column;
+}
+
+.context-menu a,
+.context-menu p {
+  padding: 9px 15px;
+  text-decoration: none;
+  color: var(--second);
+  cursor: var(--link-cursor);
+  width: 100%;
+}
+
+.context-menu a:hover,
+.context-menu p:hover {
+  background-color: var(--third);
+}

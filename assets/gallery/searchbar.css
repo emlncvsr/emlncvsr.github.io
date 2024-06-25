@@ -1,0 +1,108 @@
+#searchbar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 45px;
+  opacity: 0;
+  z-index: -1;
+}
+
+#searchbar {
+  margin-left: var(--sidebar-width);
+  margin-top: 100px;
+  width: 50%;
+  height: 45px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: var(--main);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  color: var(--second);
+}
+
+#searchbar-button {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: var(--third);
+  color: var(--second);
+  cursor: pointer;
+}
+
+#image-names {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 49%;
+  margin-left: var(--sidebar-width);
+  overflow: scroll;
+  padding-right: 10px;
+}
+
+#image-names::-webkit-scrollbar {
+  width: 10px;
+}
+
+.searchbar-item {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  align-items: center;
+  /* width: calc((100%/4) - (25px)); */
+  width: 100%;
+  background: var(--main);
+  border: 1px solid var(--third);
+}
+
+#image-names img {
+  /* width: calc((100%/4) - (25px)); */
+  width: 45%;
+  height: auto;
+}
+
+.searchbarItemInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+
+.searchbarDownloadButton {
+  background: transparent;
+  border: 1px solid var(--fourth);
+  padding: 10px 15px;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  cursor: var(--link-cursor);
+  text-decoration: none !important;
+  text-align: center;
+  color: var(--second);
+  width: fit-content;
+}
+
+.searchbarDownloadButton:hover {
+  background: var(--third) !important;
+}
+
+@media screen and (max-width: 1000px) {
+  .searchbarItemName {
+    color: var(--second) !important;
+  }
+
+  .searchbarDownloadButton {
+    border: 0 !important;
+    padding: 0 !important;
+    text-decoration: underline !important;
+    text-transform: capitalize !important;
+    color: var(--fourth) !important;
+  }
+}

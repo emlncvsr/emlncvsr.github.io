@@ -1,0 +1,22 @@
+/* width */
+::-webkit-scrollbar {
+  width: var(--scrollbar-width);
+  height: 8px;
+  background: var(--thourth);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--third);
+  border-radius: 10px;
+  cursor: var(--link-cursor);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #585858;
+}
+
+::-webkit-scrollbar-corner {
+  display: none;
+}

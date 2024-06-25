@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en-US" translate="no">
+  <head>
+    <meta name="description" content="Welcome to my website!" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta charset="utf-8" />
+    <link
+      rel="shortcut icon"
+      href="assets/img/favicon.ico"
+      type="image/x-icon"
+    />
+    <meta
+      name="theme-color"
+      media="(prefers-color-scheme: light)"
+      content="#fdf6f3"
+    />
+    <meta
+      name="theme-color"
+      media="(prefers-color-scheme: dark)"
+      content="#111111"
+    />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="upgrade-insecure-requests"
+    />
+    <meta name="googlebot-news" content="nosnippet" />
+    <meta name="robots" content="noindex" />
+    <meta itemprop="name" content="Gallery | ゴール" />
+    <meta itemprop="description" content="Gallery | ゴール" />
+    <meta itemprop="image" content="assets/img/screenshot-desktop.jpg" />
+    <meta property="og:url" content="https://emlncvsr.github.io" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Gallery | ゴール" />
+    <meta property="og:description" content="Gallery | ゴール" />
+    <meta property="og:image" content="assets/img/screenshot-desktop.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Gallery | ゴール" />
+    <meta name="twitter:description" content="Gallery | ゴール" />
+    <meta name="twitter:image" content="assets/img/screenshot-desktop.jpg" />
+    <link
+      rel="stylesheet"
+      href="/assets/css/dark.css"
+      id="darkmodestylesheet"
+    />
+    <link rel="stylesheet" href="/assets/css/context-menu.css" />
+    <link rel="stylesheet" href="/assets/css/scrollbar.css" />
+    <link rel="stylesheet" href="/assets/css/preloader-2.css" />
+    <link rel="stylesheet" href="/assets/gallery/styles.css" />
+    <link rel="stylesheet" href="/assets/gallery/searchbar.css" />
+
+    <!-- JS -->
+    <script defer src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script defer src="/assets/js/darkmode.js"></script>
+    <script defer src="/assets/js/preloader.js"></script>
+    <script defer src="/assets/js/common.js"></script>
+    <script defer src="assets/js/variable.js"></script>
+    <script defer src="/assets/js/context-menu-2.js"></script>
+    <script defer src="main.js"></script>
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+  </head>
+  <body class="locked-body">
+    <!-- PRELOADER  -->
+    <div id="preloader">
+      <p class="preloader-waiting">ロード..</p>
+      <div class="preload-count-container">
+        <p class="number colored-text"></p>
+        <span class="colored-text">%</span>
+      </div>
+    </div>
+    <div class="context-menu"></div>
+    <div id="imageNotification"></div>
+    <header>
+      <div class="topbar-item" data-url="">
+        <img src="/assets/img/favicon.svg" alt="Logo" id="logo" />
+        <p class="logo-text"></p>
+      </div>
+      <div class="topbar-item" data-url="" id="mobileMenuToggle">
+        <ion-icon name="pause-outline"></ion-icon>
+      </div>
+    </header>
+    <div id="secret-overlay"></div>
+    <div id="app">
+      <div id="sidebar">
+        <section>
+          <div class="sidebar-item" data-url="/">
+            <img src="/assets/img/favicon.svg" alt="Logo" id="logo" />
+            <p class="logo-text"></p>
+          </div>
+        </section>
+        <section>
+          <div class="sidebar-item" id="randomizeButton" data-url="">
+            <ion-icon name="refresh-outline"></ion-icon>
+            <p>Remix</p>
+          </div>
+          <a href="#page">
+            <div class="sidebar-item" data-url="">
+              <ion-icon name="person-circle-outline"></ion-icon>
+              <p>Profile</p>
+            </div>
+          </a>
+        </section>
+        <section>
+          <div class="sidebar-item" data-url="" id="search-button">
+            <ion-icon name="search-outline"></ion-icon>
+            <p>Search</p>
+          </div>
+          <div class="sidebar-item" data-url="">
+            <ion-icon name="cog-outline"></ion-icon>
+            <p class="buttonDarkModeText"></p>
+          </div>
+        </section>
+      </div>
+      <div id="page">
+        <div id="profile">
+          <div id="profile-picture"></div>
+          <div id="name"></div>
+          <div id="username"></div>
+          <div id="about-title"></div>
+          <div id="about"></div>
+          <a data-url="/links" id="url"></a>
+          <button id="following" class="followed"></button>
+        </div>
+        <div id="gallery-title"></div>
+        <div id="gallery"></div>
+        <footer>
+          <div class="horizontal-line"></div>
+          <div id="footer-content">
+            <section>
+              <a data-url="" id="termsOfUse"></a>
+              <a data-url="" id="privacyPolicy"></a>
+              <a data-url="" id="cookieNotice"></a>
+              <a data-url="" id="cookieSettings"></a>
+            </section>
+            <section></section>
+          </div>
+        </footer>
+      </div>
+    </div>
+    <div id="searchbar-overlay">
+      <input type="text" id="searchbar" placeholder="Search..." />
+      <div id="image-names"></div>
+    </div>
+  </body>
+</html>

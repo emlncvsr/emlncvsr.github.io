@@ -1,0 +1,63 @@
+{
+  "screenshots": [
+    {
+      "src": "assets/img/screenshot-desktop.jpg",
+      "sizes": "1919x883",
+      "type": "image/jpg",
+      "form_factor": "wide",
+      "label": "Desktop Version"
+    },
+    {
+      "src": "assets/img/screenshot-mobile.jpg",
+      "sizes": "454x785",
+      "type": "image/jpg",
+      "form_factor": "narrow",
+      "label": "Mobile Version"
+    }
+  ],
+  "icons": [
+    {
+      "src": "assets/img/favicon-big.png",
+      "sizes": "4096x4096",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/img/favicon-medium.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/img/favicon.png",
+      "sizes": "40x40",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "format_version": 2,
+  "header": {
+    "name": "ホーム",
+    "description": "ホーム",
+    "version": [1, 0, 0],
+    "uuid": "74e70e60-f30a-41eb-bcd5-38559494bbc6",
+    "min_engine_version": [1, 13, 0]
+  },
+  "modules": [
+    {
+      "type": "data",
+      "description": "",
+      "version": [1, 0, 0],
+      "uuid": "6b9ab292-8bc9-42f7-8e9c-96d9257ba3a1"
+    }
+  ],
+  "theme_color": "#f3f3f3",
+  "id": "ホーム",
+  "name": "ホーム",
+  "description": "ホーム",
+  "background_color": "#000000",
+  "short_name": "ホーム",
+  "start_url": "index.html",
+  "display": "fullscreen",
+  "orientation": "portrait"
+}

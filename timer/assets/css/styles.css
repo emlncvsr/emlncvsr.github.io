@@ -1,0 +1,286 @@
+@media screen and (max-width: 1000px) {
+  #content {
+    width: 95vw !important;
+  }
+}
+
+@media screen and (max-height: 500px) {
+  footer {
+    display: none !important;
+  }
+
+  #container {
+    height: calc(100vh - 1.25 * var(--header-height)) !important;
+  }
+
+  #content {
+    height: 65vh !important;
+  }
+}
+
+:root {
+  --background-scrollbar: var(--second);
+  --background-scrollbar-hover: #2b2b2b;
+  --default-cursor: url("/assets/cursors/Normal.cur"), default;
+  --link-cursor: url("/assets/cursors/Link.cur"), pointer;
+  --text-cursor: text;
+  --header-height: 60px;
+  --nav-child-size: 24px;
+  --buttondarkmode-ionicon-size: 22px;
+  --border-radius: 1px;
+  --footer-height: 50px;
+}
+
+* {
+  font-family: "Cera Pro", "Noto Sans Japanese", system-ui, sans-serif;
+  color: var(--second);
+  box-sizing: border-box;
+  cursor: var(--default-cursor);
+  font-size: 1rem;
+  font-weight: normal;
+  user-select: none;
+  max-width: 100vw;
+  -webkit-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+*:hover,
+*:not(:hover) {
+  transition: 0.333s ease-in-out;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden !important;
+}
+
+body {
+  background: var(--background);
+  margin: 0;
+  overflow-x: hidden !important;
+}
+
+::backdrop {
+  background-color: var(--background);
+}
+
+p,
+a {
+  color: var(--second) !important;
+}
+
+a {
+  text-decoration: inherit;
+}
+
+a,
+a * {
+  cursor: var(--link-cursor);
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--transparent-background);
+  position: fixed;
+  width: 100%;
+  height: var(--header-height);
+  padding: 0 20px;
+  border-bottom: 1px solid var(--third);
+  z-index: 3;
+  top: 0;
+}
+
+a[href="/"]:hover {
+  background-position: left bottom;
+  transition: 0.5s ease-in-out;
+  color: var(--main);
+}
+
+a[href="/"]:hover ion-icon {
+  color: var(--main);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: bold;
+}
+
+.logo img {
+  border-radius: var(--border-radius);
+  width: calc(var(--header-height) - 10px);
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+nav * {
+  font-size: var(--nav-child-size);
+}
+
+nav a {
+  display: contents;
+}
+
+.buttonDarkMode {
+  padding: 0;
+  background: transparent;
+  border: none;
+}
+
+.buttonDarkMode ion-icon {
+  font-size: var(--buttondarkmode-ionicon-size);
+  cursor: var(--link-cursor);
+}
+
+.buttonDarkMode:hover {
+  color: var(--second);
+}
+
+#container {
+  margin-top: var(--header-height);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(100vh - 2 * var(--header-height) - var(--footer-height));
+}
+
+#content {
+  border: 1px solid var(--third);
+  width: 75vw;
+  height: 60vh;
+  gap: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--border-radius);
+}
+
+#content * {
+  cursor: var(--link-cursor);
+}
+
+a[href="https://ieltsregistration.britishcouncil.org/ttp"]
+{
+  text-decoration: underline;
+}
+
+.counter {
+  font-size: 4rem;
+  font-weight: bold;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+body:-webkit-full-screen .counter:before {
+  content: "" !important;
+}
+
+.counter-fullscreen {
+  z-index: 3;
+  font-size: calc(100vw / 11);
+}
+
+#overlay {
+  z-index: -1;
+  opacity: 0;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: var(--background);
+}
+
+.overlay-display {
+  z-index: 3 !important;
+  opacity: 100 !important;
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  height: var(--footer-height);
+}
+
+footer .social {
+  border: 1px solid var(--second);
+  width: 41px;
+  height: 41px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 100%;
+  background: linear-gradient(to bottom, var(--second) 50%, var(--main) 50%);
+  background-size: 100% 202%;
+  background-position: right bottom;
+  cursor: var(--link-cursor);
+}
+
+footer .social:hover {
+  border-color: var(--third);
+  background-position: left top;
+  transition: 0.5s ease-in-out;
+}
+
+footer .social:hover ion-icon {
+  color: var(--main);
+  cursor: var(--link-cursor);
+}
+
+footer .social * {
+  font-size: 1.3rem;
+}
+
+#datePicker {
+  background: transparent;
+  color: var(--second);
+  padding: 5px 10px;
+  border: 1px solid var(--third);
+}
+
+#datePicker::-webkit-calendar-picker-indicator {
+  font-size: 20px;
+  padding: 5px;
+  cursor: var(--link-cursor);
+}
+
+.counterTitle {
+  font-size: 20px;
+  text-transform: capitalize;
+  z-index: 4;
+}
+
+.counterTitle.counterTitleFullscreen {
+  font-size: 30px;
+}
+
+#titleSet {
+  background: transparent;
+  color: var(--second);
+  padding: 5px 10px;
+  border: 1px solid var(--third);
+  cursor: text;
+}
+
+#set-timer {
+  position: absolute;
+  margin-top: 40vh;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+label[for="datePicker"] {
+  z-index: -1;
+  opacity: 0.00001;
+}

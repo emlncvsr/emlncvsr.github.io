@@ -1,0 +1,1 @@
+for %%A IN (*.mkv) DO ffmpeg -ss 00:18:00.000 -i "%%A" -frames:v 1 "%%~nA.jpg"

@@ -1,0 +1,14 @@
+:root {
+  --main: rgb(237, 237, 237);
+  --transparent-main: rgb(237, 237, 237, 0.9);
+  --second: rgb(5, 5, 5);
+  --third: rgb(215, 215, 215);
+  --fourth: rgb(81, 81, 81);
+  --background: rgb(243, 243, 243);
+  --highlight: rgba(243, 243, 243, 0.5);
+  --transparent-background: rgba(243, 243, 243, 0.9625);
+}
+
+* {
+  color-scheme: light !important;
+}

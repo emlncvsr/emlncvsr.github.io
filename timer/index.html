@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ja" class="locked-body" translate="no">
+  <head>
+    <!-- HTML Meta Tags -->
+    <title></title>
+    <meta name="description" content="タイマー" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    <link rel="shortcut icon" href="/assets/img/favicon.png" type="image/x-icon" />
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#fdf6f3" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#111111" />
+    <link rel="manifest" href="/manifest.json" />
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
+    <meta name="googlebot-news" content="nosnippet" />
+    <meta name="robots" content="noindex" />
+
+    <!-- Google / Search Engine Tags -->
+    <meta itemprop="name" content="タイマー" />
+    <meta itemprop="description" content="タイマー" />
+    <meta itemprop="image" content="assets/img/screenshot-desktop.jpg" />
+
+    <!-- Facebook Meta Tags -->
+    <meta property="og:url" content="https://emlncvsr.github.io/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="タイマー" />
+    <meta property="og:description" content="タイマー" />
+    <meta property="og:image" content="assets/img/screenshot-desktop.jpg" />
+
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="タイマー" />
+    <meta name="twitter:description" content="タイマー" />
+    <meta name="twitter:image" content="assets/img/screenshot-desktop.jpg" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/assets/css/dark.css" id="darkmodestylesheet" />
+    <link rel="stylesheet" href="assets/css/styles.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/common.css" />
+
+    <!-- JS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" type="text/javascript"></script>
+    <script defer src="/assets/js/darkmode.js"></script>
+    <script defer src="assets/js/timer.js"></script>
+    <script defer src="/assets/js/preloader.js"></script>
+    <script defer src="/assets/js/common.js"></script>
+    <script defer src="/assets/js/context-menu-2.js"></script>
+    <script type="module" crossorigin="anonymous" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+  </head>
+
+  <body>
+    <!-- PRELOADER  -->
+    <div id="preloader">
+      <p class="preloader-waiting">ロード..</p>
+      <div class="preload-count-container">
+        <p class="number colored-text"></p>
+        <span class="colored-text">%</span>
+      </div>
+    </div>
+
+    <!-- Context Menu -->
+    <div class="context-menu">
+      <a data-url="/">ホーム</a>
+      <a data-url="">タイマー</a>
+      <a class="buttonDarkModeText"></a>
+    </div>
+
+    <header>
+      <a data-url="/" class="logo"></a>
+      <nav>
+        <ion-icon class="buttonDarkMode" title="Dark Mode Button"></ion-icon>
+      </nav>
+    </header>
+
+    <div id="overlay"></div>
+
+    <div id="container">
+      <div id="content">
+        <div id="set-timer">
+          <label for="datePicker">Select a date:</label>
+          <input type="date" id="datePicker" name="datePicker" />
+          <input type="text" id="titleSet" placeholder="Title..." />
+        </div>
+        <p class="counterTitle"></p>
+        <p class="counter"></p>
+        <!-- <a href="" target="_blank">Link</a> -->
+      </div>
+    </div>
+
+    <footer>
+      <button data-url="/" class="social"><ion-icon name="link-outline"></ion-icon></button>
+    </footer>
+  </body>
+</html>

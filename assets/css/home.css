@@ -1,0 +1,138 @@
+:root {
+  --accent-color: #d0b8ac;
+}
+
+* {
+  overflow: hidden;
+}
+
+#preloader {
+  background: var(--accent-color);
+  clip-path: polygon(5% 0, 100% 0, 95% 100%, 0% 100%);
+  width: 150vw;
+  display: none;
+}
+
+.preloader-swipe {
+  /* transform: translate(150vw, 0); */
+  opacity: 0;
+  z-index: -1 !important;
+  transition-duration: 0.5s;
+}
+
+#app {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  transform: skew(-10deg) scale(1.09);
+  background: #f8f7ff;
+}
+
+#main-button {
+  background: var(--second);
+}
+
+.section {
+  flex: 1;
+  position: relative;
+  transition: flex 0.5s ease;
+  height: 100vh;
+  background-size: cover !important;
+  background-position: center !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: var(--link-cursor);
+}
+
+.section h1 {
+  transform: skew(10deg);
+  font-weight: 100;
+  font-size: 1.25rem;
+  font-family: "MS Mincho", Courier, monospace;
+  color: rgb(24, 24, 24);
+  user-select: none;
+}
+
+.section p {
+  transform: skew(10deg);
+  font-weight: 100;
+  font-size: 0.9rem;
+  font-family: "Courier New", Courier, monospace;
+  color: var(--fourth);
+}
+
+.section:hover {
+  flex: 1.5;
+}
+
+.section:nth-child(1) {
+  background: #f1e2d7;
+}
+
+.section:nth-child(2) {
+  background: #f9f9f7;
+}
+
+.section:nth-child(3) {
+  background: #f8d5c2;
+}
+
+.section:nth-child(4) {
+  background: #deeae8;
+}
+
+.section:nth-child(5) {
+  background: #cddcdf;
+}
+
+.section:nth-child(6) {
+  background: #f3e7e3;
+}
+
+.section:nth-child(7) {
+  background: #f8eeea;
+}
+
+.section:nth-child(8) {
+  background: #f5d3c5;
+}
+
+@media screen and (max-width: 1080px) {
+  body {
+    background: #cddcdf !important;
+  }
+
+  #app {
+    /* height: 83vh !important; */
+    flex-direction: column;
+    /* transform: skewY(-10deg) !important; */
+    transform: none !important;
+  }
+
+  .section h1,
+  .section p {
+    /* transform: skewY(10deg) !important; */
+    transform: none !important;
+  }
+
+  #border {
+    clip-path: polygon(
+      0% 0%,
+      0% 100%,
+      2% 100%,
+      2% 1%,
+      98% 1%,
+      98% 99%,
+      2% 99%,
+      2% 100%,
+      100% 100%,
+      100% 0%
+    );
+  }
+
+  #preloader {
+    display: flex !important;
+  }
+}
