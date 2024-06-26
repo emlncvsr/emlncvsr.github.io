@@ -8,21 +8,19 @@ document.addEventListener('DOMContentLoaded', function () {
 
 function openGallery(galleryId) {
     loadGalleryScript(galleryId).then(() => {
-        randomizeAndPlaceImages();
+        return randomizeAndPlaceImages();
     }).catch(error => {
         console.error(error);
     });
     $("#selector").fadeOut(500);
 }
 
-// Votre code JavaScript existant pour gérer la galerie
 var htmlFilePath = "";
 let [imagePath, originalImagePath] = ["assets/img/" + htmlFilePath + "/min", "assets/img/" + htmlFilePath + "/original"];
 const imageReductionFactor = 3.03;
 
 const imageDictionary = JSON.parse(localStorage.getItem("imageDictionary")) || {};
 
-// Initialisation des éléments de l'overlay
 let resizeTimer;
 const gallery = $("#gallery");
 const overlay = $("<div>").addClass("overlay").appendTo("body");
@@ -39,7 +37,6 @@ const nextButton = $("<ion-icon>").attr("id", "next-button").attr("name", "chevr
 let currentImageIndex = 0;
 let windowWidth = $(window).width();
 
-// Fonction pour traiter une image
 function processImage(imageLink) {
     const fileName = decodeURIComponent($(imageLink).attr("href")).replace(imagePath + "/", "");
     const modifiedDate = new Date($(imageLink)[0].lastModified);
@@ -47,9 +44,8 @@ function processImage(imageLink) {
     const imageKey = fileName.startsWith('/gallery/') ? fileName.replace('/gallery/', '') : fileName;
 }
 
-// Fonction pour afficher une image dans l'overlay
 function showImage(index) {
-    const $clickedImage = gallery.find('.item[data-index="' + index + '"]');
+    const $clickedImage = gallery.find('.masonry-item[data-index="' + index + '"]');
 
     if (!$clickedImage || !$clickedImage.attr("src")) {
         console.error("Invalid image or source for index:", index);
@@ -97,7 +93,6 @@ function showImage(index) {
     image.src = $clickedImage.attr("src");
 }
 
-// Fonction pour randomiser et placer les images
 function randomizeAndPlaceImages() {
     return new Promise((resolve, reject) => {
         $.ajax({
@@ -124,27 +119,35 @@ function randomizeAndPlaceImages() {
 
                     const imageElement = $("<img>").attr({
                         src: imagePath + "/" + fileName.replace("//", "/"),
-                        class: "item",
+                        class: "masonry-item",
                         draggable: "false",
                         id: fileName.replace(".webp", ""),
                         alt: fileName.replace(".webp", ""),
                         "data-index": j,
                         rel: "preload",
                         fetchpriority: "high",
-                        // loading: "lazy",
                     });
-
-                    (function (currentImage) {
-                        currentImage.on("load", function () {
-                            $(this).show();
-                            if (j === totalImages - 1) {
-                                searchBarImages();
-                            }
-                        });
-                    })(imageElement);
 
                     gallery.append(imageElement);
                 }
+
+                $('.masonry').imagesLoaded(function () {
+                    $('.masonry').masonry({
+                        itemSelector: '.masonry-item',
+                        percentPosition: true,
+                        columnWidth: '.masonry-sizer'
+                    });
+
+                    $('.masonry').masonry('layout');
+
+                    const lastImageSrc = gallery.find('.masonry-item').last().attr("src");
+                    if (lastImageSrc) {
+                        $("#profile-picture").css("background-image", `url(${lastImageSrc})`);
+                    } else {
+                        console.error("No images found in the gallery to set as profile picture.");
+                    }
+                    resolve();
+                });
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 reject(new Error("Erreur AJAX : " + textStatus + " " + errorThrown));
@@ -155,12 +158,11 @@ function randomizeAndPlaceImages() {
     });
 }
 
-// Fonction pour gérer les images dans la barre de recherche
 function searchBarImages() {
     const searchResults = $("#image-names");
     searchResults.empty();
 
-    $(".item").each(function () {
+    $(".masonry-item").each(function () {
         const imageSrc = $(this).attr("src");
         let imageFileName = imageSrc.replace(imagePath + "/", "").replace(".webp", "");
         imageFileName = imageFileName.startsWith('/gallery/') ? imageFileName.replace('/gallery/', '') : imageFileName;
@@ -215,11 +217,10 @@ function searchBarImages() {
 
 searchBarImages();
 
-// Fonction pour charger le script et mettre à jour htmlFilePath
 function loadGalleryScript(scriptId) {
     return new Promise((resolve, reject) => {
         $.getScript(`assets/js/${scriptId}.js`, function () {
-            htmlFilePath = scriptId; // Mettre à jour htmlFilePath
+            htmlFilePath = scriptId;
             [imagePath, originalImagePath] = ["assets/img/" + htmlFilePath + "/min", "assets/img/" + htmlFilePath + "/original"];
             resolve();
         }).fail(function (jqxhr, settings, exception) {
@@ -228,7 +229,6 @@ function loadGalleryScript(scriptId) {
     });
 }
 
-// Gestion des événements
 overlay.click(function (e) {
     if ($(e.target).is("img, p, #prev-button, #next-button, .download-button")) {
         return;
@@ -236,14 +236,14 @@ overlay.click(function (e) {
     overlay.removeClass("visible");
 });
 
-gallery.on("click", ".item", function () {
+gallery.on("click", ".masonry-item", function () {
     showImage(parseInt($(this).attr("data-index")));
     imageTitle.text($(this).attr("id").replace(".webp", ""));
 });
 
 prevButton.click(function () {
     if (currentImageIndex - 1 < 0) {
-        currentImageIndex = gallery.find(".item").length - 1;
+        currentImageIndex = gallery.find(".masonry-item").length - 1;
     } else {
         currentImageIndex = currentImageIndex - 1;
     }
@@ -251,7 +251,7 @@ prevButton.click(function () {
 });
 
 nextButton.click(function () {
-    if (currentImageIndex + 1 > gallery.find(".item").length) {
+    if (currentImageIndex + 1 > gallery.find(".masonry-item").length) {
         currentImageIndex = 0;
     } else {
         currentImageIndex = currentImageIndex + 1;
@@ -263,7 +263,6 @@ $("#randomizeButton").on("click", function () {
     randomizeAndPlaceImages();
 });
 
-// Fonction générique pour gérer tous les enfants de #selector
 $("#gallery-list div").on("click", function () {
     $("#selector").fadeOut(300);
     $("body").removeClass("locked-body");
@@ -278,7 +277,7 @@ $("#gallery-list div").on("click", function () {
 $("#viewButton").on("click", function () {
     $("#imageNotification").fadeOut();
 
-    $(".item").each(function () {
+    $(".masonry-item").each(function () {
         const index = parseInt($(this).attr("data-index"));
         if (imageDictionary.hasOwnProperty(index)) {
             imageDictionary[index].isNew = false;
