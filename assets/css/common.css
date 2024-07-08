@@ -20,10 +20,10 @@
 }
 
 /* Imports */
-/* @font-face {
-  font-family: Cera Pro;
-  src: url(/assets/fonts/Cera-Pro-Medium.otf);
-} */
+@font-face {
+  font-family: "MS Mincho";
+  src: url(/assets/fonts/MSMINCHO.TTF);
+}
 
 /* Disabling Features */
 

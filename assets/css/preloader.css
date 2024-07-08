@@ -104,3 +104,9 @@
 .number {
   --num: 0;
 }
+
+@media screen and (max-width: 1000px) {
+  .preload-count-container .colored-text{
+    font-size: 6rem !important;
+  }
+}

@@ -1,6 +1,14 @@
 @media screen and (max-width: 1000px) {
   #content {
-    width: 95vw !important;
+    width: 85vw !important;
+  }
+
+  .counter {
+    width: 50vw !important;
+  }
+
+  #set-timer{
+    margin-top: 80vh !important;
   }
 }
 
@@ -169,8 +177,7 @@ nav a {
   cursor: var(--link-cursor);
 }
 
-a[href="https://ieltsregistration.britishcouncil.org/ttp"]
-{
+a[href="https://ieltsregistration.britishcouncil.org/ttp"] {
   text-decoration: underline;
 }
 
