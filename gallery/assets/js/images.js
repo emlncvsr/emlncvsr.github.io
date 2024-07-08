@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 function openGallery(galleryId) {
     loadGalleryScript(galleryId).then(() => {
-        return randomizeAndPlaceImages();
+        randomizeAndPlaceImages();
     }).catch(error => {
         console.error(error);
     });
@@ -45,7 +45,7 @@ function processImage(imageLink) {
 }
 
 function showImage(index) {
-    const $clickedImage = gallery.find('.masonry-item[data-index="' + index + '"]');
+    const $clickedImage = gallery.find('.item[data-index="' + index + '"]');
 
     if (!$clickedImage || !$clickedImage.attr("src")) {
         console.error("Invalid image or source for index:", index);
@@ -119,35 +119,27 @@ function randomizeAndPlaceImages() {
 
                     const imageElement = $("<img>").attr({
                         src: imagePath + "/" + fileName.replace("//", "/"),
-                        class: "masonry-item",
+                        class: "item",
                         draggable: "false",
                         id: fileName.replace(".webp", ""),
                         alt: fileName.replace(".webp", ""),
                         "data-index": j,
                         rel: "preload",
                         fetchpriority: "high",
+                        // loading: "lazy",
                     });
+
+                    (function (currentImage) {
+                        currentImage.on("load", function () {
+                            $(this).show();
+                            if (j === totalImages - 1) {
+                                searchBarImages();
+                            }
+                        });
+                    })(imageElement);
 
                     gallery.append(imageElement);
                 }
-
-                $('.masonry').imagesLoaded(function () {
-                    $('.masonry').masonry({
-                        itemSelector: '.masonry-item',
-                        percentPosition: true,
-                        columnWidth: '.masonry-sizer'
-                    });
-
-                    $('.masonry').masonry('layout');
-
-                    const lastImageSrc = gallery.find('.masonry-item').last().attr("src");
-                    if (lastImageSrc) {
-                        $("#profile-picture").css("background-image", `url(${lastImageSrc})`);
-                    } else {
-                        console.error("No images found in the gallery to set as profile picture.");
-                    }
-                    resolve();
-                });
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 reject(new Error("Erreur AJAX : " + textStatus + " " + errorThrown));
@@ -162,7 +154,7 @@ function searchBarImages() {
     const searchResults = $("#image-names");
     searchResults.empty();
 
-    $(".masonry-item").each(function () {
+    $(".item").each(function () {
         const imageSrc = $(this).attr("src");
         let imageFileName = imageSrc.replace(imagePath + "/", "").replace(".webp", "");
         imageFileName = imageFileName.startsWith('/gallery/') ? imageFileName.replace('/gallery/', '') : imageFileName;
@@ -236,14 +228,14 @@ overlay.click(function (e) {
     overlay.removeClass("visible");
 });
 
-gallery.on("click", ".masonry-item", function () {
+gallery.on("click", ".item", function () {
     showImage(parseInt($(this).attr("data-index")));
     imageTitle.text($(this).attr("id").replace(".webp", ""));
 });
 
 prevButton.click(function () {
     if (currentImageIndex - 1 < 0) {
-        currentImageIndex = gallery.find(".masonry-item").length - 1;
+        currentImageIndex = gallery.find(".item").length - 1;
     } else {
         currentImageIndex = currentImageIndex - 1;
     }
@@ -251,7 +243,7 @@ prevButton.click(function () {
 });
 
 nextButton.click(function () {
-    if (currentImageIndex + 1 > gallery.find(".masonry-item").length) {
+    if (currentImageIndex + 1 > gallery.find(".item").length) {
         currentImageIndex = 0;
     } else {
         currentImageIndex = currentImageIndex + 1;
@@ -277,7 +269,7 @@ $("#gallery-list div").on("click", function () {
 $("#viewButton").on("click", function () {
     $("#imageNotification").fadeOut();
 
-    $(".masonry-item").each(function () {
+    $(".item").each(function () {
         const index = parseInt($(this).attr("data-index"));
         if (imageDictionary.hasOwnProperty(index)) {
             imageDictionary[index].isNew = false;

@@ -79,3 +79,7 @@ pre {
   margin: 0;
   white-space: pre-wrap;
 }
+
+#main-button{
+  background: #1e1e1e;
+}

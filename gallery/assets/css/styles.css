@@ -12,6 +12,14 @@
   --font-family-ja: "MS Mincho", "YU Mincho";
 }
 
+/* Imports */
+/* @font-face {
+  font-family: Cera Pro;
+  src: url(/assets/fonts/Cera-Pro-Medium.otf);
+} */
+
+/* Disabling Features */
+
 /* Common */
 
 * {
@@ -314,35 +322,22 @@ header p {
   color: var(--second);
 }
 
-.masonry {
-  background: #DDD;
-  margin-top: 50px;
-  margin-bottom: 50px;
-  padding-top: 20px;
+#gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--gallery-gap);
+  margin-top: 30px;
+  /* justify-content: center; */
 }
 
-.masonry:after {
-  content: '';
-  display: block;
-  clear: both;
+#gallery img {
+  cursor: var(--link-cursor);
 }
 
-.masonry-sizer,
-.masonry-item {
-  width: 33.333%;
-}
-
-.masonry-item {
-  float: left;
-  cursor: pointer;
-  display: block;
+.item {
   max-width: 100%;
-}
-
-.masonry-item img {
-  display: block;
-  width: 100%;
-  height: auto;
+  height: 300px;
 }
 
 .overlay {

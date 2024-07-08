@@ -8,4 +8,5 @@ $(document).ready(function () {
   $("#about").text("リヨン ー 大分県 | Samsung Z Flip 4; Canon EOS Kiss X5");
   $("#footer-content").children().last().html("<p>© 2024 写真, Inc. All rights reserved.</p>");
   $(".logo-text").text("写真");
+  $("#profile-picture").css("background", "url('assets/img/gaul/min/SKY.webp')");
 });
