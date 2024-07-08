@@ -37,9 +37,8 @@ const nextButton = $("<ion-icon>").attr("id", "next-button").attr("name", "chevr
 let currentImageIndex = 0;
 let windowWidth = $(window).width();
 
-function processImage(imageLink) {
-    const fileName = decodeURIComponent($(imageLink).attr("href")).replace(imagePath + "/", "");
-    const modifiedDate = new Date($(imageLink)[0].lastModified);
+function processImage(fileName) {
+    const modifiedDate = new Date();
     const currentDate = new Date();
     const imageKey = fileName.startsWith('/gallery/') ? fileName.replace('/gallery/', '') : fileName;
 }
@@ -94,31 +93,31 @@ function showImage(index) {
 }
 
 function randomizeAndPlaceImages() {
+    const owner = 'emlncvsr';
+    const repo = 'emlncvsr.github.io';
+    const branch = 'main';
+    const directoryPath = 'gallery/assets/img/shashin/min';
+
     return new Promise((resolve, reject) => {
         $.ajax({
-            url: imagePath + "/",
+            url: `https://api.github.com/repos/${owner}/${repo}/contents/${directoryPath}?ref=${branch}`,
+            method: 'GET',
+            headers: {
+                'Accept': 'application/vnd.github.v3+json'
+            },
             success: function (data) {
-                const imageLinks = $(data).find("a[href$='.jpg'], a[href$='.jpeg'], a[href$='.png'], a[href$='.webp']");
-                const previousImageDictionary = JSON.parse(localStorage.getItem("imageDictionary")) || {};
-
+                const imageLinks = data.filter(file => file.type === 'file' && file.name.endsWith('.webp'));
                 imageLinks.sort(() => 0.5 - Math.random());
 
                 const totalImages = imageLinks.length;
 
-                for (const imageLink of imageLinks) {
-                    processImage(imageLink);
-                }
-
-                localStorage.setItem("imageDictionary", JSON.stringify(imageDictionary));
-
                 gallery.empty();
 
                 for (let j = 0; j < totalImages; j++) {
-                    let fileName = decodeURIComponent($(imageLinks[j]).attr("href")).replace(imagePath + "/", "");
-                    fileName = fileName.startsWith('/gallery/') ? fileName.replace('/gallery/', '') : fileName;
+                    const fileName = imageLinks[j].name;
 
                     const imageElement = $("<img>").attr({
-                        src: imagePath + "/" + fileName.replace("//", "/"),
+                        src: imageLinks[j].download_url,
                         class: "item",
                         draggable: "false",
                         id: fileName.replace(".webp", ""),
@@ -126,7 +125,6 @@ function randomizeAndPlaceImages() {
                         "data-index": j,
                         rel: "preload",
                         fetchpriority: "high",
-                        // loading: "lazy",
                     });
 
                     (function (currentImage) {
@@ -140,10 +138,12 @@ function randomizeAndPlaceImages() {
 
                     gallery.append(imageElement);
                 }
+
+                resolve();
             },
             error: function (jqXHR, textStatus, errorThrown) {
-                reject(new Error("Erreur AJAX : " + textStatus + " " + errorThrown));
-            },
+                reject(new Error("Erreur lors de la récupération des fichiers : " + textStatus + " " + errorThrown));
+            }
         });
     }).catch((error) => {
         console.error(error);
@@ -156,8 +156,7 @@ function searchBarImages() {
 
     $(".item").each(function () {
         const imageSrc = $(this).attr("src");
-        let imageFileName = imageSrc.replace(imagePath + "/", "").replace(".webp", "");
-        imageFileName = imageFileName.startsWith('/gallery/') ? imageFileName.replace('/gallery/', '') : imageFileName;
+        let imageFileName = imageSrc.split('/').pop().replace(".webp", "");
 
         const imageElement = $("<img>").attr({
             src: imageSrc,
@@ -202,7 +201,7 @@ function searchBarImages() {
             .addClass("searchbarDownloadButton")
             .text("Download")
             .attr("download", "")
-            .attr("href", originalImagePath + "/" + imageFileName + ".jpg")
+            .attr("href", imageSrc)
             .appendTo(imageNameInfo);
     });
 }
