@@ -96,7 +96,7 @@ function randomizeAndPlaceImages() {
     const owner = 'emlncvsr';
     const repo = 'emlncvsr.github.io';
     const branch = 'main';
-    const directoryPath = 'gallery/assets/img/shashin/min';
+    const directoryPath = 'gallery/assets/img/' + htmlFilePath + '/min';
 
     return new Promise((resolve, reject) => {
         $.ajax({
