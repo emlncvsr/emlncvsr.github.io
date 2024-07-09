@@ -105,7 +105,7 @@
   }
 
   #app {
-    height: 83vh !important;
+    height: 92.5vh !important;
     flex-direction: column;
     /* transform: skewY(-10deg) !important; */
     transform: none !important;

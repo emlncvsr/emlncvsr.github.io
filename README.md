@@ -15,9 +15,9 @@ This repo is my website source, as well as storage for archived/abandonned proje
 
 - Timer: Displays a fullscreen custom timer that keeps tracking after leaving the page.
 
-## Archived Projects 🗝️
+## Scripts 🔗
 
-- Encryptor: Protect your data with our custom key encryptor.
+- Scripts: Several scripts : PS1, JS, PY, CMD... I did.
 
 ### Programming Languages / Libraries Used
 
