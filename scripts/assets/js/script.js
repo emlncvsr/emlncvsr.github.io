@@ -1,8 +1,9 @@
 $(document).ready(function () {
-  const htmlFilePath =
-    new URL(window.location.href).pathname.split("/").slice(0, -1).join("/") +
-    "/";
-  const scriptPath = htmlFilePath + "list/";
+  const repoOwner = "emlncvsr";
+  const repoName = "emlncvsr.github.io";
+  const directoryPath = "list/"; // Path to the directory within the repository
+
+  const apiUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${directoryPath}`;
 
   // Function to escape HTML characters
   function escapeHtml(text) {
@@ -19,31 +20,28 @@ $(document).ready(function () {
   }
 
   $.ajax({
-    url: scriptPath,
+    url: apiUrl,
+    dataType: "json",
     success: function (data) {
       const fileList = $("#file-list");
-      const fileLinks = $(data).find("a[href]");
 
-      fileLinks.each(function () {
-        const fileName = $(this).attr("href").replace(scriptPath, "");
-
-        // Skip directories by checking if the link does not contain a period (.)
-        if (!fileName.includes(".")) {
+      data.forEach(function (file) {
+        // Skip directories
+        if (file.type !== "file") {
           return;
         }
 
-        const decodedFileName = decodeURIComponent(fileName);
+        const fileName = file.name;
+        const fileUrl = file.download_url;
 
         $.ajax({
-          url: scriptPath + fileName,
+          url: fileUrl,
           dataType: "text",
           success: function (fileContent) {
             const fileItem = $("<div>", { class: "file-item" });
             const fileHeader = $("<div>", { class: "file-header" });
             const toggleIcon = $("<div>", { class: "toggle-icon" });
-            const fileTitle = $("<div>").html(
-              `<strong>${decodedFileName}</strong>`
-            );
+            const fileTitle = $("<div>").html(`<strong>${fileName}</strong>`);
             fileHeader.append(toggleIcon).append(fileTitle);
             fileItem.append(fileHeader);
             const fileContentDiv = $("<div>", { class: "file-content" });
