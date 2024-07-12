@@ -1,7 +1,7 @@
 $(document).ready(function () {
   const repoOwner = "emlncvsr";
   const repoName = "emlncvsr.github.io";
-  const directoryPath = "list/"; // Path to the directory within the repository
+  const directoryPath = "scripts/list/"; // Path to the directory within the repository
 
   const apiUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${directoryPath}`;
 
